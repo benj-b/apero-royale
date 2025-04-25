@@ -1,0 +1,602 @@
+[
+  {
+    "choix1": "ne plus jamais boire de café",
+    "choix2": "ne plus jamais manger de chocolat",
+    "difficulty": "soft",
+    "drinks": 4
+  },
+  {
+    "choix1": "avoir un smartphone mais pas d'internet",
+    "choix2": "avoir internet mais pas de smartphone",
+    "difficulty": "soft",
+    "drinks": 5
+  },
+  {
+    "choix1": "vivre sans musique",
+    "choix2": "vivre sans films",
+    "difficulty": "soft",
+    "drinks": 6
+  },
+  {
+    "choix1": "avoir un job que tu détestes mais très bien payé",
+    "choix2": "un job que tu adores mais très mal payé",
+    "difficulty": "soft",
+    "drinks": 7
+  },
+  {
+    "choix1": "être toujours en avance de 30 minutes",
+    "choix2": "toujours en retard de 10 minutes",
+    "difficulty": "soft",
+    "drinks": 3
+  },
+  {
+    "choix1": "ne plus jamais boire de café",
+    "choix2": "ne plus jamais manger de chocolat",
+    "difficulty": "soft",
+    "drinks": 4
+  },
+  {
+    "choix1": "avoir un smartphone mais pas d'internet",
+    "choix2": "avoir internet mais pas de smartphone",
+    "difficulty": "soft",
+    "drinks": 5
+  },
+  {
+    "choix1": "vivre sans musique",
+    "choix2": "vivre sans films",
+    "difficulty": "soft",
+    "drinks": 6
+  },
+  {
+    "choix1": "avoir un job que tu détestes mais très bien payé",
+    "choix2": "un job que tu adores mais très mal payé",
+    "difficulty": "soft",
+    "drinks": 7
+  },
+  {
+    "choix1": "être toujours en avance de 30 minutes",
+    "choix2": "toujours en retard de 10 minutes",
+    "difficulty": "soft",
+    "drinks": 3
+  },
+  {
+    "choix1": "ne plus jamais boire de café",
+    "choix2": "ne plus jamais manger de chocolat",
+    "difficulty": "soft",
+    "drinks": 4
+  },
+  {
+    "choix1": "avoir un smartphone mais pas d'internet",
+    "choix2": "avoir internet mais pas de smartphone",
+    "difficulty": "soft",
+    "drinks": 5
+  },
+  {
+    "choix1": "vivre sans musique",
+    "choix2": "vivre sans films",
+    "difficulty": "soft",
+    "drinks": 6
+  },
+  {
+    "choix1": "avoir un job que tu détestes mais très bien payé",
+    "choix2": "un job que tu adores mais très mal payé",
+    "difficulty": "soft",
+    "drinks": 7
+  },
+  {
+    "choix1": "être toujours en avance de 30 minutes",
+    "choix2": "toujours en retard de 10 minutes",
+    "difficulty": "soft",
+    "drinks": 3
+  },
+  {
+    "choix1": "ne plus jamais boire de café",
+    "choix2": "ne plus jamais manger de chocolat",
+    "difficulty": "soft",
+    "drinks": 4
+  },
+  {
+    "choix1": "avoir un smartphone mais pas d'internet",
+    "choix2": "avoir internet mais pas de smartphone",
+    "difficulty": "soft",
+    "drinks": 5
+  },
+  {
+    "choix1": "vivre sans musique",
+    "choix2": "vivre sans films",
+    "difficulty": "soft",
+    "drinks": 6
+  },
+  {
+    "choix1": "avoir un job que tu détestes mais très bien payé",
+    "choix2": "un job que tu adores mais très mal payé",
+    "difficulty": "soft",
+    "drinks": 7
+  },
+  {
+    "choix1": "être toujours en avance de 30 minutes",
+    "choix2": "toujours en retard de 10 minutes",
+    "difficulty": "soft",
+    "drinks": 3
+  },
+  {
+    "choix1": "ne plus jamais boire de café",
+    "choix2": "ne plus jamais manger de chocolat",
+    "difficulty": "soft",
+    "drinks": 4
+  },
+  {
+    "choix1": "avoir un smartphone mais pas d'internet",
+    "choix2": "avoir internet mais pas de smartphone",
+    "difficulty": "soft",
+    "drinks": 5
+  },
+  {
+    "choix1": "vivre sans musique",
+    "choix2": "vivre sans films",
+    "difficulty": "soft",
+    "drinks": 6
+  },
+  {
+    "choix1": "avoir un job que tu détestes mais très bien payé",
+    "choix2": "un job que tu adores mais très mal payé",
+    "difficulty": "soft",
+    "drinks": 7
+  },
+  {
+    "choix1": "être toujours en avance de 30 minutes",
+    "choix2": "toujours en retard de 10 minutes",
+    "difficulty": "soft",
+    "drinks": 3
+  },
+  {
+    "choix1": "ne plus jamais boire de café",
+    "choix2": "ne plus jamais manger de chocolat",
+    "difficulty": "soft",
+    "drinks": 4
+  },
+  {
+    "choix1": "avoir un smartphone mais pas d'internet",
+    "choix2": "avoir internet mais pas de smartphone",
+    "difficulty": "soft",
+    "drinks": 5
+  },
+  {
+    "choix1": "vivre sans musique",
+    "choix2": "vivre sans films",
+    "difficulty": "soft",
+    "drinks": 6
+  },
+  {
+    "choix1": "avoir un job que tu détestes mais très bien payé",
+    "choix2": "un job que tu adores mais très mal payé",
+    "difficulty": "soft",
+    "drinks": 7
+  },
+  {
+    "choix1": "être toujours en avance de 30 minutes",
+    "choix2": "toujours en retard de 10 minutes",
+    "difficulty": "soft",
+    "drinks": 3
+  },
+  {
+    "choix1": "ne plus jamais boire de café",
+    "choix2": "ne plus jamais manger de chocolat",
+    "difficulty": "soft",
+    "drinks": 4
+  },
+  {
+    "choix1": "avoir un smartphone mais pas d'internet",
+    "choix2": "avoir internet mais pas de smartphone",
+    "difficulty": "soft",
+    "drinks": 5
+  },
+  {
+    "choix1": "vivre sans musique",
+    "choix2": "vivre sans films",
+    "difficulty": "soft",
+    "drinks": 6
+  },
+  {
+    "choix1": "avoir un job que tu détestes mais très bien payé",
+    "choix2": "un job que tu adores mais très mal payé",
+    "difficulty": "soft",
+    "drinks": 7
+  },
+  {
+    "choix1": "être toujours en avance de 30 minutes",
+    "choix2": "toujours en retard de 10 minutes",
+    "difficulty": "soft",
+    "drinks": 3
+  },
+  {
+    "choix1": "ne plus jamais boire de café",
+    "choix2": "ne plus jamais manger de chocolat",
+    "difficulty": "soft",
+    "drinks": 4
+  },
+  {
+    "choix1": "avoir un smartphone mais pas d'internet",
+    "choix2": "avoir internet mais pas de smartphone",
+    "difficulty": "soft",
+    "drinks": 5
+  },
+  {
+    "choix1": "vivre sans musique",
+    "choix2": "vivre sans films",
+    "difficulty": "soft",
+    "drinks": 6
+  },
+  {
+    "choix1": "avoir un job que tu détestes mais très bien payé",
+    "choix2": "un job que tu adores mais très mal payé",
+    "difficulty": "soft",
+    "drinks": 7
+  },
+  {
+    "choix1": "être toujours en avance de 30 minutes",
+    "choix2": "toujours en retard de 10 minutes",
+    "difficulty": "soft",
+    "drinks": 3
+  },
+  {
+    "choix1": "ne plus jamais boire de café",
+    "choix2": "ne plus jamais manger de chocolat",
+    "difficulty": "soft",
+    "drinks": 4
+  },
+  {
+    "choix1": "avoir un smartphone mais pas d'internet",
+    "choix2": "avoir internet mais pas de smartphone",
+    "difficulty": "soft",
+    "drinks": 5
+  },
+  {
+    "choix1": "vivre sans musique",
+    "choix2": "vivre sans films",
+    "difficulty": "soft",
+    "drinks": 6
+  },
+  {
+    "choix1": "avoir un job que tu détestes mais très bien payé",
+    "choix2": "un job que tu adores mais très mal payé",
+    "difficulty": "soft",
+    "drinks": 7
+  },
+  {
+    "choix1": "être toujours en avance de 30 minutes",
+    "choix2": "toujours en retard de 10 minutes",
+    "difficulty": "soft",
+    "drinks": 3
+  },
+  {
+    "choix1": "ne plus jamais boire de café",
+    "choix2": "ne plus jamais manger de chocolat",
+    "difficulty": "soft",
+    "drinks": 4
+  },
+  {
+    "choix1": "avoir un smartphone mais pas d'internet",
+    "choix2": "avoir internet mais pas de smartphone",
+    "difficulty": "soft",
+    "drinks": 5
+  },
+  {
+    "choix1": "vivre sans musique",
+    "choix2": "vivre sans films",
+    "difficulty": "soft",
+    "drinks": 6
+  },
+  {
+    "choix1": "avoir un job que tu détestes mais très bien payé",
+    "choix2": "un job que tu adores mais très mal payé",
+    "difficulty": "soft",
+    "drinks": 7
+  },
+  {
+    "choix1": "être toujours en avance de 30 minutes",
+    "choix2": "toujours en retard de 10 minutes",
+    "difficulty": "soft",
+    "drinks": 3
+  },
+  {
+    "choix1": "ne plus jamais boire de café",
+    "choix2": "ne plus jamais manger de chocolat",
+    "difficulty": "soft",
+    "drinks": 4
+  },
+  {
+    "choix1": "avoir un smartphone mais pas d'internet",
+    "choix2": "avoir internet mais pas de smartphone",
+    "difficulty": "soft",
+    "drinks": 5
+  },
+  {
+    "choix1": "vivre sans musique",
+    "choix2": "vivre sans films",
+    "difficulty": "soft",
+    "drinks": 6
+  },
+  {
+    "choix1": "avoir un job que tu détestes mais très bien payé",
+    "choix2": "un job que tu adores mais très mal payé",
+    "difficulty": "soft",
+    "drinks": 7
+  },
+  {
+    "choix1": "être toujours en avance de 30 minutes",
+    "choix2": "toujours en retard de 10 minutes",
+    "difficulty": "soft",
+    "drinks": 3
+  },
+  {
+    "choix1": "ne plus jamais boire de café",
+    "choix2": "ne plus jamais manger de chocolat",
+    "difficulty": "soft",
+    "drinks": 4
+  },
+  {
+    "choix1": "avoir un smartphone mais pas d'internet",
+    "choix2": "avoir internet mais pas de smartphone",
+    "difficulty": "soft",
+    "drinks": 5
+  },
+  {
+    "choix1": "vivre sans musique",
+    "choix2": "vivre sans films",
+    "difficulty": "soft",
+    "drinks": 6
+  },
+  {
+    "choix1": "avoir un job que tu détestes mais très bien payé",
+    "choix2": "un job que tu adores mais très mal payé",
+    "difficulty": "soft",
+    "drinks": 7
+  },
+  {
+    "choix1": "être toujours en avance de 30 minutes",
+    "choix2": "toujours en retard de 10 minutes",
+    "difficulty": "soft",
+    "drinks": 3
+  },
+  {
+    "choix1": "ne plus jamais boire de café",
+    "choix2": "ne plus jamais manger de chocolat",
+    "difficulty": "soft",
+    "drinks": 4
+  },
+  {
+    "choix1": "avoir un smartphone mais pas d'internet",
+    "choix2": "avoir internet mais pas de smartphone",
+    "difficulty": "soft",
+    "drinks": 5
+  },
+  {
+    "choix1": "vivre sans musique",
+    "choix2": "vivre sans films",
+    "difficulty": "soft",
+    "drinks": 6
+  },
+  {
+    "choix1": "avoir un job que tu détestes mais très bien payé",
+    "choix2": "un job que tu adores mais très mal payé",
+    "difficulty": "soft",
+    "drinks": 7
+  },
+  {
+    "choix1": "être toujours en avance de 30 minutes",
+    "choix2": "toujours en retard de 10 minutes",
+    "difficulty": "soft",
+    "drinks": 3
+  },
+  {
+    "choix1": "ne plus jamais boire de café",
+    "choix2": "ne plus jamais manger de chocolat",
+    "difficulty": "soft",
+    "drinks": 4
+  },
+  {
+    "choix1": "avoir un smartphone mais pas d'internet",
+    "choix2": "avoir internet mais pas de smartphone",
+    "difficulty": "soft",
+    "drinks": 5
+  },
+  {
+    "choix1": "vivre sans musique",
+    "choix2": "vivre sans films",
+    "difficulty": "soft",
+    "drinks": 6
+  },
+  {
+    "choix1": "avoir un job que tu détestes mais très bien payé",
+    "choix2": "un job que tu adores mais très mal payé",
+    "difficulty": "soft",
+    "drinks": 7
+  },
+  {
+    "choix1": "être toujours en avance de 30 minutes",
+    "choix2": "toujours en retard de 10 minutes",
+    "difficulty": "soft",
+    "drinks": 3
+  },
+  {
+    "choix1": "ne plus jamais boire de café",
+    "choix2": "ne plus jamais manger de chocolat",
+    "difficulty": "soft",
+    "drinks": 4
+  },
+  {
+    "choix1": "avoir un smartphone mais pas d'internet",
+    "choix2": "avoir internet mais pas de smartphone",
+    "difficulty": "soft",
+    "drinks": 5
+  },
+  {
+    "choix1": "vivre sans musique",
+    "choix2": "vivre sans films",
+    "difficulty": "soft",
+    "drinks": 6
+  },
+  {
+    "choix1": "avoir un job que tu détestes mais très bien payé",
+    "choix2": "un job que tu adores mais très mal payé",
+    "difficulty": "soft",
+    "drinks": 7
+  },
+  {
+    "choix1": "être toujours en avance de 30 minutes",
+    "choix2": "toujours en retard de 10 minutes",
+    "difficulty": "soft",
+    "drinks": 3
+  },
+  {
+    "choix1": "ne plus jamais boire de café",
+    "choix2": "ne plus jamais manger de chocolat",
+    "difficulty": "soft",
+    "drinks": 4
+  },
+  {
+    "choix1": "avoir un smartphone mais pas d'internet",
+    "choix2": "avoir internet mais pas de smartphone",
+    "difficulty": "soft",
+    "drinks": 5
+  },
+  {
+    "choix1": "vivre sans musique",
+    "choix2": "vivre sans films",
+    "difficulty": "soft",
+    "drinks": 6
+  },
+  {
+    "choix1": "avoir un job que tu détestes mais très bien payé",
+    "choix2": "un job que tu adores mais très mal payé",
+    "difficulty": "soft",
+    "drinks": 7
+  },
+  {
+    "choix1": "être toujours en avance de 30 minutes",
+    "choix2": "toujours en retard de 10 minutes",
+    "difficulty": "soft",
+    "drinks": 3
+  },
+  {
+    "choix1": "ne plus jamais boire de café",
+    "choix2": "ne plus jamais manger de chocolat",
+    "difficulty": "soft",
+    "drinks": 4
+  },
+  {
+    "choix1": "avoir un smartphone mais pas d'internet",
+    "choix2": "avoir internet mais pas de smartphone",
+    "difficulty": "soft",
+    "drinks": 5
+  },
+  {
+    "choix1": "vivre sans musique",
+    "choix2": "vivre sans films",
+    "difficulty": "soft",
+    "drinks": 6
+  },
+  {
+    "choix1": "avoir un job que tu détestes mais très bien payé",
+    "choix2": "un job que tu adores mais très mal payé",
+    "difficulty": "soft",
+    "drinks": 7
+  },
+  {
+    "choix1": "être toujours en avance de 30 minutes",
+    "choix2": "toujours en retard de 10 minutes",
+    "difficulty": "soft",
+    "drinks": 3
+  },
+  {
+    "choix1": "ne plus jamais boire de café",
+    "choix2": "ne plus jamais manger de chocolat",
+    "difficulty": "soft",
+    "drinks": 4
+  },
+  {
+    "choix1": "avoir un smartphone mais pas d'internet",
+    "choix2": "avoir internet mais pas de smartphone",
+    "difficulty": "soft",
+    "drinks": 5
+  },
+  {
+    "choix1": "vivre sans musique",
+    "choix2": "vivre sans films",
+    "difficulty": "soft",
+    "drinks": 6
+  },
+  {
+    "choix1": "avoir un job que tu détestes mais très bien payé",
+    "choix2": "un job que tu adores mais très mal payé",
+    "difficulty": "soft",
+    "drinks": 7
+  },
+  {
+    "choix1": "être toujours en avance de 30 minutes",
+    "choix2": "toujours en retard de 10 minutes",
+    "difficulty": "soft",
+    "drinks": 3
+  },
+  {
+    "choix1": "ne plus jamais boire de café",
+    "choix2": "ne plus jamais manger de chocolat",
+    "difficulty": "soft",
+    "drinks": 4
+  },
+  {
+    "choix1": "avoir un smartphone mais pas d'internet",
+    "choix2": "avoir internet mais pas de smartphone",
+    "difficulty": "soft",
+    "drinks": 5
+  },
+  {
+    "choix1": "vivre sans musique",
+    "choix2": "vivre sans films",
+    "difficulty": "soft",
+    "drinks": 6
+  },
+  {
+    "choix1": "avoir un job que tu détestes mais très bien payé",
+    "choix2": "un job que tu adores mais très mal payé",
+    "difficulty": "soft",
+    "drinks": 7
+  },
+  {
+    "choix1": "être toujours en avance de 30 minutes",
+    "choix2": "toujours en retard de 10 minutes",
+    "difficulty": "soft",
+    "drinks": 3
+  },
+  {
+    "choix1": "ne plus jamais boire de café",
+    "choix2": "ne plus jamais manger de chocolat",
+    "difficulty": "soft",
+    "drinks": 4
+  },
+  {
+    "choix1": "avoir un smartphone mais pas d'internet",
+    "choix2": "avoir internet mais pas de smartphone",
+    "difficulty": "soft",
+    "drinks": 5
+  },
+  {
+    "choix1": "vivre sans musique",
+    "choix2": "vivre sans films",
+    "difficulty": "soft",
+    "drinks": 6
+  },
+  {
+    "choix1": "avoir un job que tu détestes mais très bien payé",
+    "choix2": "un job que tu adores mais très mal payé",
+    "difficulty": "soft",
+    "drinks": 7
+  },
+  {
+    "choix1": "être toujours en avance de 30 minutes",
+    "choix2": "toujours en retard de 10 minutes",
+    "difficulty": "soft",
+    "drinks": 3
+  }
+]
