@@ -6,10 +6,10 @@
         {{ currentQuestion.choix2 }} ?
       </h1>
       <div class="buttons">
-        <button class="choice-button" @click="chooseOption(choice1)">
+        <button class="choice-button" @click="chooseOption">
           {{ currentQuestion.choix1 }}
         </button>
-        <button class="choice-button" @click="chooseOption(choice2)">
+        <button class="choice-button" @click="chooseOption">
           {{ currentQuestion.choix2 }}
         </button>
       </div>

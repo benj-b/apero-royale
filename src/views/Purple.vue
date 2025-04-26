@@ -206,6 +206,7 @@ export default defineComponent({
       endTurn,
       quitGame,
       betResult,
+      isBetInProgress,
     }
   },
 })
