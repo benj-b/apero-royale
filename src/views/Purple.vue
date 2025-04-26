@@ -20,17 +20,72 @@
         </div>
       </div>
       <div class="buttons">
-        <button class="choice-button" @click="makeBet('noir')">Noir</button>
-        <button class="choice-button" @click="makeBet('rouge')">Rouge</button>
-        <button class="choice-button" @click="makeBet('plus')">Plus</button>
-        <button class="choice-button" @click="makeBet('moins')">Moins</button>
-        <button class="choice-button" @click="makeBet('interieur')">Intérieur</button>
-        <button class="choice-button" @click="makeBet('exterieur')">Extérieur</button>
-        <button class="choice-button" @click="makeBet('purple')">Purple</button>
+        <button
+          class="choice-button"
+          v-if="!(canDoublePurple || canTriplePurple || disabledPlay)"
+          @click="makeBet('noir')"
+        >
+          Noir
+        </button>
+        <button
+          class="choice-button"
+          v-if="!(canDoublePurple || canTriplePurple || disabledPlay)"
+          @click="makeBet('rouge')"
+        >
+          Rouge
+        </button>
+        <button
+          class="choice-button"
+          v-if="pile.length > 0 && !(canDoublePurple || canTriplePurple || disabledPlay)"
+          @click="makeBet('plus')"
+        >
+          Plus
+        </button>
+        <button
+          class="choice-button"
+          v-if="pile.length > 0 && !(canDoublePurple || canTriplePurple || disabledPlay)"
+          @click="makeBet('moins')"
+        >
+          Moins
+        </button>
+        <button
+          class="choice-button"
+          v-if="pile.length > 1 && !(canDoublePurple || canTriplePurple || disabledPlay)"
+          @click="makeBet('interieur')"
+        >
+          Intérieur
+        </button>
+        <button
+          class="choice-button"
+          v-if="pile.length > 1 && !(canDoublePurple || canTriplePurple || disabledPlay)"
+          @click="makeBet('exterieur')"
+        >
+          Extérieur
+        </button>
+        <button
+          class="choice-button"
+          v-if="!(canDoublePurple || canTriplePurple || disabledPlay)"
+          @click="makeBet('purple')"
+        >
+          Purple
+        </button>
+        <button class="choice-button" v-if="canDoublePurple" @click="makeBet('double_purple')">
+          Double Purple
+        </button>
+        <button class="choice-button" v-if="canTriplePurple" @click="makeBet('triple_purple')">
+          Triple Purple
+        </button>
+        <button
+          class="choice-button"
+          v-if="(canDoublePurple || canTriplePurple) && !disabledPlay"
+          @click="abend"
+        >
+          Abandonner mon purple
+        </button>
       </div>
       <button
         class="end-turn-button"
-        :disabled="pile.length < 3 || isBetInProgress"
+        :disabled="pile.length < 3 || isBetInProgress || disabledPlay"
         @click="endTurn"
       >
         Terminer le tour
@@ -64,6 +119,9 @@ export default defineComponent({
     const pile = ref<{ value: number; color: string }[]>([]) // Tas de cartes
     const playerDrinks = ref<Record<string, number>>({}) // Gorgées par joueur
     const isBetInProgress = ref(false) // Indicateur de pari en cours
+    const canDoublePurple = ref(false)
+    const canTriplePurple = ref(false)
+    const disabledPlay = ref(false)
 
     const groupedPile = computed(() => {
       const groups = []
@@ -72,6 +130,23 @@ export default defineComponent({
       }
       return groups
     })
+
+    // permet d'abandonner son pari (dans le cas d'un purple raté)
+    const abend = () => {
+      isBetInProgress.value = false
+      betResult.value = false
+      disabledPlay.value = false
+      const penalty = pile.value.length
+      playerDrinks.value[currentPlayer.value] =
+        (playerDrinks.value[currentPlayer.value] || 0) + penalty
+
+      setTimeout(() => {
+        pile.value = []
+        betResult.value = null
+        isBetInProgress.value = false // Pari terminé après le délai
+        disabledPlay.value = false
+      }, 2000)
+    }
 
     // Résultat du pari
     const betResult = ref<null | boolean>(null)
@@ -123,8 +198,7 @@ export default defineComponent({
 
     // Faire un pari
     const makeBet = (bet: string) => {
-      isBetInProgress.value = true // Un pari est en cours
-
+      disabledPlay.value = true
       if (bet === 'purple') {
         const firstCard = drawCard()
         const secondCard = drawCard()
@@ -133,8 +207,89 @@ export default defineComponent({
         if (firstCard.color !== secondCard.color) {
           betResult.value = true // Pari réussi
           isBetInProgress.value = false // Pari terminé
+          disabledPlay.value = false
         } else {
-          betResult.value = false // Pari raté
+          canDoublePurple.value = true
+        }
+        return
+      } else if (bet == 'double_purple') {
+        const lastCard = pile.value[pile.value.length - 2] // La carte précédente (avant la nouvelle carte)
+        const secondLastCard = pile.value[pile.value.length - 3]
+
+        const firstCard = drawCard()
+        const secondCard = drawCard()
+        pile.value.push(firstCard, secondCard)
+
+        const cards = [secondLastCard, lastCard, firstCard, secondCard]
+
+        const cptNoir = ref(0)
+        const cptRouge = ref(0)
+        cards.forEach((element: { value: number; color: string }) => {
+          console.log(element)
+          if (element.color === 'noir') cptNoir.value++
+          else cptRouge.value++
+        })
+
+        console.log('double purple')
+        console.log(
+          'old cards : [' +
+            lastCard.value +
+            lastCard.color +
+            ' / ' +
+            secondLastCard.value +
+            secondLastCard.color +
+            ']',
+        )
+        console.log(
+          'new cards : [' +
+            firstCard.value +
+            firstCard.color +
+            ' / ' +
+            secondCard.value +
+            secondCard.color +
+            ']',
+        )
+
+        if (cptNoir.value == cptRouge.value) {
+          betResult.value = true
+          isBetInProgress.value = false
+          disabledPlay.value = false
+          canDoublePurple.value = false
+        } else if (cptNoir.value == 0 || cptRouge.value == 0) {
+          abend()
+        } else {
+          canDoublePurple.value = false
+          canTriplePurple.value = true
+        }
+        return
+      } else if (bet == 'triple_purple') {
+        const cardMinus4 = pile.value[pile.value.length - 5]
+        const cardMinus3 = pile.value[pile.value.length - 4]
+        const cardMinus2 = pile.value[pile.value.length - 3]
+        const cardMinus1 = pile.value[pile.value.length - 2]
+
+        const firstCard = drawCard()
+        const secondCard = drawCard()
+        pile.value.push(firstCard, secondCard)
+
+        const cards = [cardMinus4, cardMinus3, cardMinus2, cardMinus1, firstCard, secondCard]
+
+        const cptNoir = ref(0)
+        const cptRouge = ref(0)
+
+        cards.forEach((element: { value: number; color: string }) => {
+          if (element.color === 'noir') cptNoir.value++
+          else cptRouge.value++
+        })
+
+        if (cptNoir.value == cptRouge.value) {
+          canTriplePurple.value = false
+          betResult.value = true
+          isBetInProgress.value = false
+          disabledPlay.value = false
+        } else {
+          canTriplePurple.value = false
+          betResult.value = false
           const penalty = pile.value.length
           playerDrinks.value[currentPlayer.value] =
             (playerDrinks.value[currentPlayer.value] || 0) + penalty
@@ -143,6 +298,7 @@ export default defineComponent({
             pile.value = []
             betResult.value = null
             isBetInProgress.value = false // Pari terminé après le délai
+            disabledPlay.value = false
           }, 2000)
         }
         return
@@ -154,6 +310,7 @@ export default defineComponent({
       if (checkBet(bet, newCard)) {
         betResult.value = true // Pari réussi
         isBetInProgress.value = false // Pari terminé
+        disabledPlay.value = false
       } else {
         betResult.value = false // Pari raté
         const penalty = pile.value.length
@@ -164,17 +321,14 @@ export default defineComponent({
           pile.value = []
           betResult.value = null
           isBetInProgress.value = false // Pari terminé après le délai
+          disabledPlay.value = false
         }, 2000)
       }
     }
 
     // Terminer le tour
     const endTurn = () => {
-      if (currentPlayerIndex.value < players.value.length - 1) {
-        currentPlayerIndex.value++
-      } else {
-        currentPlayerIndex.value = 0
-      }
+      currentPlayerIndex.value = (currentPlayerIndex.value + 1) % players.value.length
 
       currentPlayer.value = players.value[currentPlayerIndex.value]
       betResult.value = null // Réinitialiser le résultat du pari
@@ -188,7 +342,8 @@ export default defineComponent({
     onMounted(() => {
       if (players.value.length === 0) {
         alert("Aucun joueur n'est sélectionné.")
-        router.push('/')
+        // router.push('/')
+        players.value = ['a']
       } else {
         players.value.forEach((player) => {
           playerDrinks.value[player] = 0
@@ -202,11 +357,15 @@ export default defineComponent({
       currentPlayer,
       pile,
       groupedPile,
+      abend,
       makeBet,
       endTurn,
       quitGame,
       betResult,
       isBetInProgress,
+      canDoublePurple,
+      canTriplePurple,
+      disabledPlay,
     }
   },
 })
