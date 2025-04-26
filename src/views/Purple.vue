@@ -213,8 +213,8 @@ export default defineComponent({
         }
         return
       } else if (bet == 'double_purple') {
-        const lastCard = pile.value[pile.value.length - 2] // La carte précédente (avant la nouvelle carte)
-        const secondLastCard = pile.value[pile.value.length - 3]
+        const lastCard = pile.value[pile.value.length - 1] // La carte précédente (avant la nouvelle carte)
+        const secondLastCard = pile.value[pile.value.length - 2]
 
         const firstCard = drawCard()
         const secondCard = drawCard()
@@ -263,10 +263,10 @@ export default defineComponent({
         }
         return
       } else if (bet == 'triple_purple') {
-        const cardMinus4 = pile.value[pile.value.length - 5]
-        const cardMinus3 = pile.value[pile.value.length - 4]
-        const cardMinus2 = pile.value[pile.value.length - 3]
-        const cardMinus1 = pile.value[pile.value.length - 2]
+        const cardMinus4 = pile.value[pile.value.length - 4]
+        const cardMinus3 = pile.value[pile.value.length - 3]
+        const cardMinus2 = pile.value[pile.value.length - 2]
+        const cardMinus1 = pile.value[pile.value.length - 1]
 
         const firstCard = drawCard()
         const secondCard = drawCard()
