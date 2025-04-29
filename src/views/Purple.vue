@@ -4,7 +4,12 @@
       <h1 class="title">Purple</h1>
       <h2 class="question">{{ currentPlayer }}, fais ton pari !</h2>
       <p v-if="betResult !== null" :class="['bet-result', betResult ? 'success' : 'failure']">
-        {{ betResult ? 'Ça passe !' : 'Raté...' }}
+        <template v-if="betResult"> Ça passe ! </template>
+        <template v-else>
+          <span v-if="currentBet === 'purple'">On part sur un double purple ?</span>
+          <span v-else-if="currentBet === 'double_purple'">On part sur un triple purple ?</span>
+          <span v-else>Raté...</span>
+        </template>
       </p>
       <div class="pile">
         <p class="pile-info">Cartes sur le tas : {{ pile.length }}</p>
@@ -76,14 +81,16 @@
           </button>
         </div>
       </div>
-      <button
-        class="end-turn-button"
-        :disabled="pile.length < 3 || isBetInProgress || disabledPlay"
-        @click="endTurn"
-      >
-        Terminer le tour
-      </button>
-      <button class="quit-button" @click="quitGame">Quitter le jeu</button>
+      <div class="end-buttons">
+        <button
+          class="end-turn-button"
+          :disabled="pile.length < 3 || isBetInProgress || disabledPlay"
+          @click="endTurn"
+        >
+          Terminer le tour
+        </button>
+        <button class="quit-button" @click="quitGame">Quitter le jeu</button>
+      </div>
     </div>
   </div>
 </template>
@@ -115,6 +122,7 @@ export default defineComponent({
     const canDoublePurple = ref(false)
     const canTriplePurple = ref(false)
     const disabledPlay = ref(false)
+    const currentBet = ref('') // Type de pari en cours
 
     const groupedPile = computed(() => {
       const groups = []
@@ -195,88 +203,77 @@ export default defineComponent({
     // Faire un pari
     const makeBet = (bet: string) => {
       disabledPlay.value = true
+      currentBet.value = bet // Définir le type de pari en cours
 
       if (bet === 'purple') {
-        // Tirer deux cartes pour le pari "Purple"
         const firstCard = drawCard()
         const secondCard = drawCard()
         pile.value.push(firstCard, secondCard)
 
-        // Vérifier les deux dernières cartes
         if (firstCard.color !== secondCard.color) {
-          // Les deux cartes sont de couleurs différentes → Pari réussi
           betResult.value = true
           isBetInProgress.value = false
           disabledPlay.value = false
         } else {
-          // Les deux cartes sont de la même couleur → Activer le double purple
           canDoublePurple.value = true
+          betResult.value = false // Pari raté
         }
         return
       }
 
       if (bet === 'double_purple') {
-        // Tirer deux cartes pour le pari "Double Purple"
         const firstCard = drawCard()
         const secondCard = drawCard()
         pile.value.push(firstCard, secondCard)
 
-        // Vérifier les 4 dernières cartes
         const lastFourCards = pile.value.slice(-4)
         const cptNoir = lastFourCards.filter((card) => card.color === 'noir').length
         const cptRouge = lastFourCards.filter((card) => card.color === 'rouge').length
 
         if (cptNoir === 0 || cptRouge === 0) {
-          // Toutes les cartes sont de la même couleur → Pari perdu immédiatement
           abend()
           return
         }
 
         if (cptNoir === cptRouge) {
-          // Autant de cartes noires que de rouges → Pari réussi
           betResult.value = true
           isBetInProgress.value = false
           disabledPlay.value = false
           canDoublePurple.value = false
         } else {
-          // Sinon, activer le triple purple
           canDoublePurple.value = false
           canTriplePurple.value = true
+          betResult.value = false // Pari raté
         }
         return
       }
 
       if (bet === 'triple_purple') {
-        // Tirer deux cartes pour le pari "Triple Purple"
         const firstCard = drawCard()
         const secondCard = drawCard()
         pile.value.push(firstCard, secondCard)
 
-        // Vérifier les 6 dernières cartes
         const lastSixCards = pile.value.slice(-6)
         const cptNoir = lastSixCards.filter((card) => card.color === 'noir').length
         const cptRouge = lastSixCards.filter((card) => card.color === 'rouge').length
 
         if (cptNoir === cptRouge) {
-          // Autant de cartes noires que de rouges → Pari réussi
           betResult.value = true
           isBetInProgress.value = false
           disabledPlay.value = false
           canTriplePurple.value = false
         } else {
-          // Sinon, pari raté
           abend()
         }
         return
       }
 
-      // Logique pour les autres paris
       const newCard = drawCard()
       pile.value.push(newCard)
 
       if (checkBet(bet, newCard)) {
-        betResult.value = true // Pari réussi
-        isBetInProgress.value = false // Pari terminé
+        betResult.value = true
+        isBetInProgress.value = false
         disabledPlay.value = false
       } else {
         abend()
@@ -326,12 +323,57 @@ export default defineComponent({
       canDoublePurple,
       canTriplePurple,
       disabledPlay,
+      currentBet,
     }
   },
 })
 </script>
 
 <style scoped>
+.end-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem; /* Espacement horizontal entre les boutons */
+  margin-top: 2rem; /* Espacement au-dessus des boutons */
+}
+
+.end-turn-button,
+.quit-button {
+  background-color: #f44336;
+  color: white;
+  padding: 0.75rem 2rem;
+  border-radius: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+  border: none;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.end-turn-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.end-turn-button:hover:not(:disabled) {
+  background-color: #e57373;
+  transform: scale(1.05);
+}
+
+.quit-button {
+  background-color: #8e24aa;
+}
+
+.quit-button:hover {
+  background-color: #ba68c8;
+  transform: scale(1.05);
+}
+
 .buttons {
   display: flex;
   flex-direction: column;
@@ -377,25 +419,6 @@ export default defineComponent({
   color: #f44336; /* Rouge pour échec */
 }
 
-.quit-button {
-  background-color: #8e24aa;
-  color: white;
-  padding: 0.75rem 2rem;
-  border-radius: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition:
-    background-color 0.3s ease,
-    transform 0.3s ease;
-  border: none;
-  margin-top: 1rem;
-}
-
-.quit-button:hover {
-  background-color: #ba68c8;
-  transform: scale(1.05);
-}
-
 .outer-container {
   display: flex;
   justify-content: center;
@@ -433,29 +456,6 @@ export default defineComponent({
 .pile-info {
   font-size: 1.2rem;
   margin-bottom: 1rem;
-}
-
-.end-turn-button {
-  background-color: #f44336;
-  color: white;
-  padding: 0.75rem 2rem;
-  border-radius: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition:
-    background-color 0.3s ease,
-    transform 0.3s ease;
-  border: none;
-}
-
-.end-turn-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-.end-turn-button:hover:not(:disabled) {
-  background-color: #e57373;
-  transform: scale(1.05);
 }
 
 .cards-container {
