@@ -46,15 +46,27 @@ export default defineComponent({
     const currentQuestion = ref({
       choix1: '',
       choix2: '',
-      drinks: 0,
       difficulty: '',
+      drinks: 0,
     })
 
     const currentPlayer = ref('')
     const playerDrinks = ref<Record<string, number>>({})
+    const usedIndices = ref(new Set<number>()) // Ensemble des indices déjà utilisés
 
     const loadQuestion = () => {
-      const randomIndex = Math.floor(Math.random() * questions.length)
+      if (usedIndices.value.size >= questions.length) {
+        usedIndices.value.clear() // Réinitialiser si toutes les questions ont été posées
+      }
+
+      let randomIndex
+      do {
+        randomIndex = Math.floor(Math.random() * questions.length)
+        console.log('randomIndex', randomIndex)
+      } while (usedIndices.value.has(randomIndex))
+
+      console.log('usedIndices', usedIndices.value)
+      usedIndices.value.add(randomIndex)
       currentQuestion.value = questions[randomIndex]
     }
 
