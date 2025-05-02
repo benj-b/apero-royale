@@ -512,7 +512,8 @@ export default defineComponent({
 
 .cards-container {
   display: flex;
-  overflow-x: auto; /* Permettre le défilement horizontal */
+  flex-wrap: wrap;
+  justify-content: center;
   padding: 1rem;
   gap: 1rem;
   max-width: 100%; /* Limiter la largeur à celle du conteneur parent */
@@ -523,20 +524,20 @@ export default defineComponent({
 
 .cards-row {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 0.5rem; /* Espacement entre les cartes */
 }
 
-.cards-container::-webkit-scrollbar {
-  height: 8px; /* Hauteur de la scrollbar */
-}
+@media (max-width: 768px) {
+  .cards-container {
+    gap: 0.5rem;
+  }
 
-.cards-container::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3); /* Couleur de la barre de défilement */
-  border-radius: 4px;
-}
-
-.cards-container::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1); /* Couleur de l'arrière-plan de la scrollbar */
+  .cards-row .card {
+    width: 60px;
+    height: 90px;
+  }
 }
 
 .special-purple-button {

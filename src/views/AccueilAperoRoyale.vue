@@ -144,11 +144,12 @@ export default defineComponent({
 
 .input {
   flex: 1;
-  padding: 0.75rem;
+  padding: 0.5rem;
   border-radius: 1rem;
   border: 1px solid #ccc;
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #333;
+  max-width: 70%;
 }
 
 .add-button {
@@ -207,6 +208,24 @@ export default defineComponent({
   }
   100% {
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.flex.items-center {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Espacement réduit entre l'input et le bouton */
+}
+
+@media (max-width: 768px) {
+  .input {
+    max-width: 60%; /* Réduire encore la largeur sur les petits écrans */
+    font-size: 0.8rem; /* Réduire la taille de la police */
+  }
+
+  .add-button {
+    padding: 0.4rem 0.8rem; /* Réduire la taille du bouton */
+    font-size: 0.9rem; /* Réduire la taille de la police du bouton */
   }
 }
 </style>
