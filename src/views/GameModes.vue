@@ -2,11 +2,11 @@
   <div class="outer-container">
     <div class="container">
       <h1 class="title">Modes de jeu</h1>
-      <div class="game-card" @click="goToGameSettings('tu-preferes')">
+      <div class="game-card" @click="goToGameRules('tu-preferes')">
         <h2 class="game-title">Tu préfères ?</h2>
         <p class="game-description">Arriveras-tu à choisir entre deux terribles options ?</p>
       </div>
-      <div class="game-card" @click="goToGame('purple')">
+      <div class="game-card" @click="goToGameRules('purple')">
         <h2 class="game-title">Purple</h2>
         <p class="game-description">
           Arriveras-tu à les cartes ? Attention le total peut devenir salé !
@@ -25,21 +25,16 @@ export default defineComponent({
   setup() {
     const router = useRouter()
 
-    const goToGameSettings = (name: string) => {
-      // Redirection vers la vue des paramètres de jeu
+    const goToGameRules = (name: string) => {
+      // Redirection vers la vue des règles du jeu
       router.push({
-        path: '/game-settings',
+        path: '/game-rules',
         query: { gameName: name },
       })
     }
 
-    const goToGame = (name: string) => {
-      router.push('/' + name)
-    }
-
     return {
-      goToGameSettings,
-      goToGame,
+      goToGameRules,
     }
   },
 })
