@@ -11,18 +11,35 @@
           <span v-else>Raté...</span>
         </template>
       </p>
+      <div v-if="showAllCards" class="popup-overlay" @click.self="showAllCards = false">
+        <div class="popup">
+          <h3>Toutes les cartes</h3>
+          <div class="all-cards-container">
+            <Card
+              v-for="(card, cardIndex) in pile"
+              :key="cardIndex"
+              :value="card.value"
+              :color="card.color"
+              class="small-card"
+            />
+          </div>
+          <button class="close-popup-button" @click="showAllCards = false">Fermer</button>
+        </div>
+      </div>
       <div class="pile">
         <p class="pile-info">Cartes sur le tas : {{ pile.length }}</p>
+        <!-- Affiche le nombre total de cartes -->
         <div class="cards-container">
-          <div class="cards-row" v-for="(row, rowIndex) in groupedPile" :key="rowIndex">
+          <div class="cards-row">
             <Card
-              v-for="(card, cardIndex) in row"
+              v-for="(card, cardIndex) in pile.slice(-5)"
               :key="cardIndex"
               :value="card.value"
               :color="card.color"
             />
           </div>
         </div>
+        <button class="view-all-button" @click="showAllCards = true">Voir toutes les cartes</button>
       </div>
       <div class="buttons">
         <div class="button-row">
@@ -80,6 +97,15 @@
             Abandonner mon purple
           </button>
         </div>
+        <div class="button-row">
+          <button
+            class="special-purple-button"
+            v-if="!disabledPlay"
+            @click="makeSpecialDoublePurple"
+          >
+            Double Spécial Purple
+          </button>
+        </div>
       </div>
       <div class="end-buttons">
         <button
@@ -96,7 +122,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted, computed } from 'vue'
+import { defineComponent, ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useGameStore } from '@/stores/useGameStore'
 import Card from '@/components/Card.vue'
@@ -107,6 +133,7 @@ export default defineComponent({
     Card,
   },
   setup() {
+    const showAllCards = ref(false) // État pour afficher toutes les cartes
     const gameStore = useGameStore()
     const router = useRouter()
 
@@ -123,14 +150,6 @@ export default defineComponent({
     const canTriplePurple = ref(false)
     const disabledPlay = ref(false)
     const currentBet = ref('') // Type de pari en cours
-
-    const groupedPile = computed(() => {
-      const groups = []
-      for (let i = 0; i < pile.value.length; i += 5) {
-        groups.push(pile.value.slice(i, i + 5))
-      }
-      return groups
-    })
 
     // pari raté
     const abend = () => {
@@ -219,9 +238,7 @@ export default defineComponent({
           betResult.value = false // Pari raté
         }
         return
-      }
-
-      if (bet === 'double_purple') {
+      } else if (bet === 'double_purple') {
         const firstCard = drawCard()
         const secondCard = drawCard()
         pile.value.push(firstCard, secondCard)
@@ -246,9 +263,7 @@ export default defineComponent({
           betResult.value = false // Pari raté
         }
         return
-      }
-
-      if (bet === 'triple_purple') {
+      } else if (bet === 'triple_purple') {
         const firstCard = drawCard()
         const secondCard = drawCard()
         pile.value.push(firstCard, secondCard)
@@ -280,6 +295,42 @@ export default defineComponent({
       }
     }
 
+    const makeSpecialDoublePurple = () => {
+      disabledPlay.value = true // Désactiver les autres actions pendant ce coup
+
+      // Tirer les 8 cartes
+      const firstFourCards = Array.from({ length: 4 }, drawCard)
+      const lastFourCards = Array.from({ length: 4 }, drawCard)
+
+      // Ajouter les 4 premières cartes d'un coup
+      pile.value.push(...firstFourCards)
+
+      // Afficher les 4 dernières cartes une par une avec un délai
+      const revealLastFourCards = async () => {
+        for (const card of lastFourCards) {
+          await new Promise((resolve) => setTimeout(resolve, 1000))
+          pile.value.push(card)
+        }
+
+        // Vérifier si le pari est réussi
+        const lastEightCards = pile.value.slice(-8)
+        const cptNoir = lastEightCards.filter((card) => card.color === 'noir').length
+        const cptRouge = lastEightCards.filter((card) => card.color === 'rouge').length
+
+        if (cptNoir === 4 && cptRouge === 4) {
+          // Pari réussi
+          betResult.value = true
+          isBetInProgress.value = false
+          disabledPlay.value = false
+        } else {
+          // Pari raté
+          abend()
+        }
+      }
+
+      revealLastFourCards()
+    }
+
     // Terminer le tour
     const endTurn = () => {
       currentPlayerIndex.value = (currentPlayerIndex.value + 1) % players.value.length
@@ -299,8 +350,8 @@ export default defineComponent({
     onMounted(() => {
       if (players.value.length === 0) {
         alert("Aucun joueur n'est sélectionné.")
-        // router.push('/')
-        players.value = ['a']
+        router.push('/')
+        // players.value = ['a']
       } else {
         players.value.forEach((player) => {
           playerDrinks.value[player] = 0
@@ -310,12 +361,13 @@ export default defineComponent({
     })
 
     return {
+      showAllCards,
       players,
       currentPlayer,
       pile,
-      groupedPile,
       abend,
       makeBet,
+      makeSpecialDoublePurple,
       endTurn,
       quitGame,
       betResult,
@@ -460,13 +512,131 @@ export default defineComponent({
 
 .cards-container {
   display: flex;
-  flex-direction: column;
+  overflow-x: auto; /* Permettre le défilement horizontal */
+  padding: 1rem;
   gap: 1rem;
+  max-width: 100%; /* Limiter la largeur à celle du conteneur parent */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .cards-row {
   display: flex;
+  gap: 0.5rem; /* Espacement entre les cartes */
+}
+
+.cards-container::-webkit-scrollbar {
+  height: 8px; /* Hauteur de la scrollbar */
+}
+
+.cards-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3); /* Couleur de la barre de défilement */
+  border-radius: 4px;
+}
+
+.cards-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1); /* Couleur de l'arrière-plan de la scrollbar */
+}
+
+.special-purple-button {
+  background: linear-gradient(
+    45deg,
+    rgba(255, 0, 0, 0.8),
+    rgba(255, 165, 0, 0.8),
+    rgba(255, 255, 0, 0.8),
+    rgba(0, 128, 0, 0.8),
+    rgba(0, 0, 255, 0.8),
+    rgba(75, 0, 130, 0.8),
+    rgba(238, 130, 238, 0.8)
+  );
+  background-size: 300% 300%; /* Permet de déplacer le dégradé */
+  color: white;
+  padding: 0.75rem 2rem;
+  border-radius: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  border: none;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.special-purple-button:hover {
+  transform: scale(1.1);
+  animation: rainbow-move 2s infinite linear; /* Animation pour déplacer le dégradé */
+}
+
+@keyframes rainbow-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Styles pour la popup */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup {
+  background: white;
+  color: black;
+  padding: 2rem;
+  border-radius: 1rem;
+  max-width: 90%;
+  max-height: 80%;
+  overflow-y: auto;
+  text-align: center;
+}
+
+.all-cards-container {
+  display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
   justify-content: center;
+}
+
+.small-card {
+  width: 50px; /* Réduire la taille des cartes */
+  height: 70px;
+}
+
+.close-popup-button {
+  margin-top: 1rem;
+  background-color: #f44336;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.close-popup-button:hover {
+  background-color: #e57373;
+}
+
+.view-all-button {
+  margin-top: 1rem;
+  background-color: #4caf50;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.view-all-button:hover {
+  background-color: #66bb6a;
 }
 </style>
