@@ -40,17 +40,20 @@ export default defineComponent({
     const gameName = ref(route.query.gameName || 'Jeu inconnu')
 
     const getGameDescription = () => {
-      const game = games[gameName.value.toLowerCase()]
+      const gameKey = gameName.value as keyof typeof games // Forcer le type à une clé valide de games
+      const game = games[gameKey]
       return game ? game.description : 'Description non disponible pour ce jeu.'
     }
 
     const getGameClass = () => {
-      const game = games[gameName.value.toLowerCase()]
-      return game ? game.class : {}
+      const gameKey = gameName.value as keyof typeof games // Forcer le type à une clé valide de games
+      const game = games[gameKey]
+      return game ? game.class : ''
     }
 
     const getGameName = () => {
-      const game = games[gameName.value.toLowerCase()]
+      const gameKey = gameName.value as keyof typeof games // Forcer le type à une clé valide de games
+      const game = games[gameKey]
       return game ? game.name : 'Jeu inconnu'
     }
 
