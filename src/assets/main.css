@@ -33,3 +33,82 @@ a,
     padding: 0 2rem;
   }
 }
+
+/* Conteneur principal */
+.container {
+  max-width: 600px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 2rem;
+  font-family: 'Arial', sans-serif;
+  border-radius: 1rem;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.outer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #6a1b9a, #ec407a);
+  padding: 1rem;
+}
+
+/* Titres */
+.title {
+  font-family: 'Pacifico', cursive;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #ffeb3b;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  animation: pulse 1.5s infinite;
+}
+
+/* Boutons génériques */
+.button,
+.validate-button,
+.play-button,
+.add-button {
+  background-color: #fbc02d;
+  color: #8e24aa;
+  padding: 0.75rem 2rem;
+  border-radius: 1rem;
+  font-weight: bold;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.button:hover,
+.validate-button:hover,
+.play-button:hover,
+.add-button:hover {
+  background-color: #ffeb3b;
+  transform: scale(1.05);
+}
+
+/* Listes */
+.list {
+  list-style-type: disc;
+  padding-left: 1rem;
+  color: white;
+  font-size: 1.2rem;
+}
+
+/* Animation de texte */
+@keyframes pulse {
+  0% {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.5);
+  }
+  100% {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  }
+}

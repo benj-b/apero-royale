@@ -128,27 +128,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.outer-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(to bottom, #6a1b9a, #ec407a);
-  padding: 1rem;
-}
-
-.container {
-  max-width: 600px;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  padding: 2rem;
-  font-family: 'Arial', sans-serif;
-  border-radius: 1rem;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  text-align: center;
-}
-
 .question {
   font-size: 1.8rem;
   font-weight: bold;
