@@ -7,7 +7,8 @@
           {{ player }} : {{ drinks }} gorgées
         </li>
       </ul>
-      <button class="back-button" @click="goToHome">Retour à l'accueil</button>
+      <button class="quit-button" @click="goToHome">Menu Principal</button>
+      <button class="back-button" @click="goToGames">Changer de jeu</button>
     </div>
   </div>
 </template>
@@ -30,9 +31,14 @@ export default defineComponent({
       router.push('/')
     }
 
+    const goToGames = () => {
+      router.push('/game-modes')
+    }
+
     return {
       playerDrinks,
       goToHome,
+      goToGames,
     }
   },
 })
@@ -49,22 +55,5 @@ export default defineComponent({
 
 .recap-list li {
   margin-bottom: 0.5rem;
-}
-
-.back-button {
-  background-color: #4caf50;
-  color: white;
-  padding: 0.75rem 2rem;
-  border-radius: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition:
-    background-color 0.3s ease,
-    transform 0.3s ease;
-}
-
-.back-button:hover {
-  background-color: #66bb6a;
-  transform: scale(1.05);
 }
 </style>
