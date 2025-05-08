@@ -34,6 +34,12 @@ export default defineComponent({
           '<i>Un jeu de cartes où chaque pari peut tout changer !</i> <br>Dans Purple, le but est simple : <strong>parie sur la prochaine carte qui va sortir.</strong> Sera-t-elle 🔴 ou ⚫ ? ➕ ou ➖ grande que la précédente ? Mais attention, tu dois poser 3 cartes avant de pouvoir envoyer la bombe à ton voisin. Chaque pari te rapproche de la cuite ! Sauras-tu jouer avec le feu sans te brûler ? 🔥🎴',
         class: 'purple-game',
       },
+      'wheel-of-destiny': {
+        name: 'La Roue du Destin',
+        description:
+          '<i>Un jeu où le destin décide pour toi !</i> <br>Dans ce jeu, tu dois faire tourner la roue pour découvrir une action à réaliser et un joueur à désigner. <strong>Prêt à laisser le destin décider de ton sort ?</strong>',
+        class: 'wheel-of-destiny-game',
+      },
     }
 
     // Récupérer les informations du jeu depuis les paramètres de la route
@@ -58,13 +64,20 @@ export default defineComponent({
     }
 
     const startGame = () => {
-      if (gameName.value == 'purple') {
-        router.push('/purple')
-      } else
-        router.push({
-          path: '/game-settings',
-          query: { gameName: gameName.value },
-        })
+      switch (gameName.value) {
+        case 'purple':
+          router.push('/purple')
+          break
+        case 'wheel-of-destiny':
+          router.push('/roue-du-destin')
+          break
+        default:
+          router.push({
+            path: '/game-settings',
+            query: { gameName: gameName.value },
+          })
+          break
+      }
     }
 
     const goBack = () => {

@@ -6,6 +6,7 @@ import TuPreferes from '@/views/TuPreferes.vue'
 import RecapView from '@/views/Recap.vue'
 import Purple from '@/views/Purple.vue'
 import GameRules from '@/views/GameRules.vue'
+import WheelOfDestiny from '@/views/WheelOfDestiny.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,6 +45,11 @@ const router = createRouter({
       path: '/game-rules',
       name: 'GameRules',
       component: GameRules,
+    },
+    {
+      path: '/roue-du-destin',
+      name: 'Roue du destin',
+      component: WheelOfDestiny,
     },
   ],
 })

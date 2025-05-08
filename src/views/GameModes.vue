@@ -12,6 +12,12 @@
           Arriveras-tu à les cartes ? Attention le total peut devenir salé !
         </p>
       </div>
+      <div class="game-card" @click="goToGameRules('wheel-of-destiny')">
+        <h2 class="game-title">La Roue du Destin</h2>
+        <p class="game-description">
+          Laisse le destin décider : une action et un joueur choisis au hasard !
+        </p>
+      </div>
     </div>
   </div>
 </template>
