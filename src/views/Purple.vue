@@ -115,7 +115,7 @@
         >
           Terminer le tour
         </button>
-        <button class="quit-button" @click="quitGame">Quitter le jeu</button>
+        <button class="quit-button" @click="handleQuitGame">Quitter le jeu</button>
       </div>
     </div>
   </div>
@@ -126,6 +126,7 @@ import { defineComponent, ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useGameStore } from '@/stores/useGameStore'
 import Card from '@/components/Card.vue'
+import { useGameUtils } from '@/utils/gameUtils'
 
 export default defineComponent({
   name: 'PurpleView',
@@ -136,6 +137,7 @@ export default defineComponent({
     const showAllCards = ref(false) // État pour afficher toutes les cartes
     const gameStore = useGameStore()
     const router = useRouter()
+    const { quitGame } = useGameUtils()
 
     // Récupérer les joueurs
     const players = ref(gameStore.players)
@@ -339,12 +341,9 @@ export default defineComponent({
       betResult.value = null // Réinitialiser le résultat du pari
     }
 
-    // Quitter le jeu
-    const quitGame = () => {
-      router.push({
-        path: '/recap',
-        query: { playerDrinks: JSON.stringify(playerDrinks.value) },
-      })
+    //Quitter le jeu
+    const handleQuitGame = () => {
+      quitGame(playerDrinks.value)
     }
 
     onMounted(() => {
@@ -369,7 +368,7 @@ export default defineComponent({
       makeBet,
       makeSpecialDoublePurple,
       endTurn,
-      quitGame,
+      handleQuitGame,
       betResult,
       isBetInProgress,
       canDoublePurple,
@@ -387,43 +386,6 @@ export default defineComponent({
   justify-content: center;
   gap: 1rem; /* Espacement horizontal entre les boutons */
   margin-top: 2rem; /* Espacement au-dessus des boutons */
-}
-
-.end-turn-button,
-.quit-button {
-  background-color: #f44336;
-  color: white;
-  padding: 0.75rem 2rem;
-  border-radius: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition:
-    background-color 0.3s ease,
-    transform 0.3s ease;
-  border: none;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.end-turn-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-.end-turn-button:hover:not(:disabled) {
-  background-color: #e57373;
-  transform: scale(1.05);
-}
-
-.quit-button {
-  background-color: #8e24aa;
-}
-
-.quit-button:hover {
-  background-color: #ba68c8;
-  transform: scale(1.05);
 }
 
 .buttons {

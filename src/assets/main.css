@@ -71,7 +71,10 @@ a,
 .button,
 .validate-button,
 .play-button,
-.add-button {
+.add-button,
+.end-turn-button,
+.quit-button,
+.back-button {
   background-color: #fbc02d;
   color: #8e24aa;
   padding: 0.75rem 2rem;
@@ -82,6 +85,8 @@ a,
   transition:
     background-color 0.3s ease,
     transform 0.3s ease;
+  height: 3rem;
+  border: none;
 }
 
 .button:hover,
@@ -89,6 +94,40 @@ a,
 .play-button:hover,
 .add-button:hover {
   background-color: #ffeb3b;
+  transform: scale(1.05);
+}
+
+.back-button {
+  background-color: #4caf50;
+  color: white;
+}
+
+.back-button:hover {
+  background-color: #66bb6a;
+  transform: scale(1.05);
+}
+
+.end-turn-button,
+.quit-button {
+  color: white;
+}
+
+.end-turn-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.end-turn-button:hover:not(:disabled) {
+  background-color: #e57373;
+  transform: scale(1.05);
+}
+
+.quit-button {
+  background-color: #8e24aa;
+}
+
+.quit-button:hover {
+  background-color: #ba68c8;
   transform: scale(1.05);
 }
 
